@@ -14,7 +14,7 @@ const reviewSchema = mongoose.Schema(
 const productSchema = new mongoose.Schema(
   {
     user: {
-      type: mongoose.Schema.types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
       ref: "User", // Reference model is the User
       // This help us to identify which user

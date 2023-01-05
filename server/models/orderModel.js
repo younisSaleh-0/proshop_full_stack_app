@@ -83,7 +83,7 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    isDeliveredAt: {
+    deliveredAt: {
       type: Date,
     },
   },
@@ -94,4 +94,4 @@ const orderSchema = new mongoose.Schema(
 
 //Export the model
 const Order = mongoose.model("Oder", orderSchema);
-export default Oder;
+export default Order;
