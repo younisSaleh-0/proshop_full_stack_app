@@ -10,8 +10,8 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
-import Products from "../products_and_images/products";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -20,10 +20,16 @@ const ProductPage = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const product = Products.find((product) => product._id === id);
+      try {
+        const { data } = await axios.get(
+          `http://localhost:3100/api/products/${id}`
+        );
 
-      setProduct(product);
-      setIsLoading(false);
+        setProduct(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchProduct();
@@ -92,23 +98,6 @@ const ProductPage = () => {
         </Col>
       </Row>
     </>
-    // <Card className="my-3 p-3 rounded">
-    //   <Card.Img src={product.image} />
-    //   <Card.Body>
-    //     <Card.Title as="div">
-    //       <strong>{product.name}</strong>
-    //     </Card.Title>
-    //   </Card.Body>
-    //   <Card.Text as="div">
-    //     <div className="my-3">
-    //       <Rating
-    //         value={product.rating}
-    //         text={`${product.numReviews} reviews`}
-    //       />
-    //     </div>
-    //   </Card.Text>
-    //   <Card.Text as="h3">${product.price}</Card.Text>
-    // </Card>
   );
 };
 
