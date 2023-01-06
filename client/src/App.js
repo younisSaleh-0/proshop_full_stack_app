@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import { Container } from "react-bootstrap";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
+import Cart from "./pages/Cart";
 
 const App = () => {
   // Layout
@@ -39,8 +40,8 @@ const App = () => {
           element: <p>Hello from login</p>,
         },
         {
-          path: "/cart",
-          element: <p>Hello from cart</p>,
+          path: "/cart/:id?",
+          element: <Cart />,
         },
         {
           path: "/update/:id",
