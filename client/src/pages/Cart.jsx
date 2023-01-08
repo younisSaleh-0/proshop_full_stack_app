@@ -104,10 +104,9 @@ const Cart = () => {
               </h2>
               <span>
                 $
-                {cartItems.reduce(
-                  (acc, item) => acc + item.qty * item.price,
-                  0
-                )}
+                {cartItems
+                  .reduce((acc, item) => acc + item.qty * item.price, 0)
+                  .toFixed(2)}
               </span>
             </ListGroupItem>
             <ListGroupItem>
