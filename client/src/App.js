@@ -7,6 +7,12 @@ import { Container } from "react-bootstrap";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
 import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import Shipping from "./pages/Shipping";
+import PaymentMethod from "./pages/PaymentMethod";
+import PlaceOrder from "./pages/PlaceOrder";
 
 const App = () => {
   // Layout
@@ -37,15 +43,31 @@ const App = () => {
         },
         {
           path: "/login",
-          element: <p>Hello from login</p>,
+          element: <Login />,
         },
         {
           path: "/cart/:id?",
           element: <Cart />,
         },
         {
+          path: "/shipping",
+          element: <Shipping />,
+        },
+        {
+          path: "/paymentMethod",
+          element: <PaymentMethod />,
+        },
+        {
+          path: "/placeOrder",
+          element: <PlaceOrder />,
+        },
+        {
           path: "/update/:id",
           element: <p>Hello from update</p>,
+        },
+        {
+          path: "/profile",
+          element: <Profile />,
         },
         {
           path: "/product/:id",
@@ -53,7 +75,7 @@ const App = () => {
         },
         {
           path: "/register",
-          element: <p>Hello from register</p>,
+          element: <Register />,
         },
       ],
     },

@@ -39,7 +39,7 @@ const Cart = () => {
   };
 
   const checkOutHandler = () => {
-    navigate(".login?redirect=shipping");
+    navigate("/shipping");
   };
 
   return (
@@ -109,6 +109,7 @@ const Cart = () => {
                   .toFixed(2)}
               </span>
             </ListGroupItem>
+
             <ListGroupItem>
               <Button
                 type="button"

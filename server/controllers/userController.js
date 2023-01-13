@@ -19,7 +19,7 @@ const generateToken = (id) => {
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, mobile, password, isAdmin } = req.body;
 
-  if (!name || !email || !mobile || !password || !isAdmin) {
+  if (!name || !email || !mobile || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
@@ -100,4 +100,37 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser, getUserProfile };
+// @desc Update user
+// @route PUT /api/users/:id
+// @access private
+const updateUser = asyncHandler(async (req, res) => {
+  const { name, email, mobile, password } = req.body;
+
+  // Hash password
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  // Update user
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    { name, email, mobile, password: hashedPassword },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  if (updatedUser) {
+    res.json({
+      _id: updatedUser.id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+export { registerUser, loginUser, getUserProfile, updateUser };
