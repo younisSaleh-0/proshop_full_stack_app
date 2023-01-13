@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
@@ -23,7 +23,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user, _id } = userDetails;
+  const { loading, error, user } = userDetails;
   //   console.log(user._id);
 
   const userLogin = useSelector((state) => state.userLogin);
@@ -44,7 +44,7 @@ const Profile = () => {
         setMobile(user.mobile);
       }
     }
-  }, [navigate, user, dispatch]);
+  }, [navigate, user, dispatch, success, userInfo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
